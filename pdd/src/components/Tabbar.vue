@@ -17,7 +17,7 @@
 
         <div class="tab-item" :class="{active: $route.path == '/chat'}" @click="navigatorTo('/chat')">
             <span class="icon icon-chat"></span>
-            <span>聊天</span>
+            <span>购物车</span>
         </div>
 
         <div class="tab-item" :class="{active: $route.path == '/me'}" @click="navigatorTo('/me')">

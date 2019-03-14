@@ -206,8 +206,8 @@ export default {
                     line-height 35px
                     font-size 16px
                     &.current
-                        border-bottom 2px solid mediumpurple
-                        color mediumpurple
+                        border-bottom 2px solid #f40
+                        color #f40
                         font-weight bolder
                     &:nth-child(1)
                         margin-right 10px
@@ -223,7 +223,7 @@ export default {
                     font-size 12px
                     color #ccc
                     &.captcha
-                        color mediumpurple                        
+                        color #f40                        
                 input 
                     width 100%
                     height 40px
@@ -236,7 +236,7 @@ export default {
                     border-radius 5px
                     outline none 
                     &:focus
-                        border 1px solid mediumpurple
+                        border 1px solid #f40
             .password-login
                 width 100%
                 .pwd
@@ -267,7 +267,7 @@ export default {
                     border-radius 5px
                     outline none 
                     &:focus
-                        border 1px solid mediumpurple
+                        border 1px solid #f40
                 
             .tip 
                 text-align left 
@@ -280,11 +280,11 @@ export default {
                 padding 10px 0px
                 font-size 14px
                 border none 
-                background-color mediumpurple
+                background-color #f40
                 margin-bottom 15px
             .cancel
                 width 100%
-                border 1px solid mediumpurple
+                border 1px solid #f40
                 box-sizing border-box
                 background-color transparent
                 border-radius 5px

@@ -30,7 +30,7 @@ export default {
             button 
                 width 80%
                 height 38px
-                background-color mediumpurple
+                background-color #f40
                 border none
                 border-radius 5px
                 font-size 20px

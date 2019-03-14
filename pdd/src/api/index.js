@@ -4,7 +4,7 @@ var BASE_URL = 'http://127.0.0.1:3000';
 
 //获取首页轮播图数据
 function getHomeCarousel() {
-    return ajax(BASE_URL + '/api/getHomeCarousel');
+    return ajax('/api/getHomeCarousel');
 }
 
 //获取首页导航数据
@@ -17,9 +17,14 @@ function getShopList() {
     return ajax('/api/getShopList')
 }
 
-//获取推荐页面数据
-function getRecommend(params) {
-    return ajax(BASE_URL + '/api/getRecommend', params)
+//获取推荐页面数据(向自己后台请求数据)
+// function getRecommend(params) {
+//     return ajax(BASE_URL + '/api/getRecommend', params)
+// }
+
+//获取推荐页面数据(Mock假数据)
+function getRecommend() {
+    return ajax('/api/getRecommend')
 }
 
 //获取搜索页数据

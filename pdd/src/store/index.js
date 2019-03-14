@@ -81,7 +81,7 @@ export default new Vuex.Store({
     actions: {
         async reqHomeCarousel({commit}) {
             var result = await getHomeCarousel();            
-            commit('addHomeCarouselData', result.message);
+            commit('addHomeCarouselData', result.data.data);
         },
         async reqHotNav({commit}) {
             var result = await getHotNav();
@@ -96,7 +96,7 @@ export default new Vuex.Store({
                 page: params.page,
                 count: params.count
             });
-            commit('addRecommendData', result.message);
+            commit('addRecommendData', result.data.data);
             params.callBack && params.callBack();
         },
         async resSearchList({commit}) {
