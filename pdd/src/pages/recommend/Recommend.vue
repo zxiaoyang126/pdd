@@ -23,7 +23,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['recommendData'])
+        ...mapState(['recommendData', 'cartData'])
     },
     mounted() {
         Indicator.open('加载中...');
@@ -75,27 +75,50 @@ export default {
             })
         },
         addCart(shop) {
-            var goodsId = parseInt(shop.goods_id);
-            var goodsName = shop.goods_name;
-            var thumbUrl = shop.thumb_url;
-            var goodsCount = 1;
-            var goodsPrice = parseInt(shop.price);          
 
-            var result = addToCart({
-                goodsId,
-                goodsName,
-                goodsCount,
-                thumbUrl,                
-                goodsPrice
+            // 注释代码需要连接数据库
+
+            // var goodsId = parseInt(shop.goods_id);
+            // var goodsName = shop.goods_name;
+            // var thumbUrl = shop.thumb_url;
+            // var goodsCount = 1;
+            // var goodsPrice = parseInt(shop.price);              
+
+            // var result = addToCart({
+            //     goodsId,
+            //     goodsName,
+            //     goodsCount,
+            //     thumbUrl,                
+            //     goodsPrice
+            // })
+
+            // result.then(data => {
+            //     Toast({
+            //         message: data.message,
+            //         position: 'center',
+            //         duration: 1000
+            //     })
+            // })
+            
+
+            var cartDataObj = {
+                goods_id: parseInt(shop.goods_id),
+                goods_name: shop.goods_name,
+                thumb_url: shop.thumb_url,
+                goods_count: 1,
+                goods_price: parseInt(shop.price),
+                isSelected: false
+            }   
+
+            this.$store.commit('addCartData', cartDataObj)
+
+            Toast({
+                message: '添加成功',
+                position: 'center',
+                duration: 1000
             })
 
-            result.then(data => {
-                Toast({
-                    message: data.message,
-                    position: 'center',
-                    duration: 1000
-                })
-            })
+           
         }
     }    
 }

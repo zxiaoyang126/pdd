@@ -46,21 +46,28 @@ export default new Vuex.Store({
         changeUserInfo(state, obj) {
             var type = obj.type;
             var value = obj.value;           
-            state.userInfo[type] = value;            
+            //state.userInfo[type] = value;
+            state.userInfo = {...state.userInfo, [type]: value};
         },
         addCartData(state, data) {
-            data.forEach((value, index) => {
-                value.isSelected = false;
+            var goodsIndex = -1;
+            state.cartData.forEach(function(goods, index) {
+                if(goods.goods_id === data.goods_id) {
+                    goodsIndex = index
+                }
             })
-            state.cartData = data;
+            if(goodsIndex == -1) {                
+                state.cartData.push( data )
+            } else {
+                state.cartData[ goodsIndex ].goods_count++;
+            }
+            
         },
         addCount(state, goods) {
-            console.log(goods)
             goods.goods_count++;           
            
         },
         subCount(state, goods) {
-            console.log(goods)
             goods.goods_count--;
         },
         selectAll(state, flag) {
@@ -103,7 +110,7 @@ export default new Vuex.Store({
             var result = await getSearchList();
             commit('addSearchData', result.data.data);
         },
-        async resCartDate({commit}) {
+        async resCartData({commit}) {
             var result = await getCartData();
             commit('addCartData', result.data)
         }

@@ -9,28 +9,28 @@
 
             <li class="user-info-item">
                 <span>昵称</span>
-                <span @click="addName">{{user_name}}</span>
+                <span @click="addName">{{user_name ? user_name : '未填写'}}</span>
             </li>
 
             <li class="user-info-item">
                 <span>性别</span>
-                <span @click="sheetVisible = !sheetVisible">{{user_sex}}</span>
+                <span @click="sheetVisible = !sheetVisible">{{user_sex ? user_sex : '未填写'}}</span>
             </li>
 
             <li class="user-info-item">
                 <span>常住地</span>
-                <span @click="addAddress">{{user_address}}</span>
+                <span @click="addAddress">{{user_address ? user_address : '未填写'}}</span>
             </li>
 
 
             <li class="user-info-item">
                 <span>生日</span>
-                <span @click="chooseBirthday">{{user_birthday}}</span>
+                <span @click="chooseBirthday">{{user_birthday ? user_birthday : '未填写'}}</span>
             </li>
 
             <li class="user-info-item">
                 <span>个性签名</span>
-                <span @click="addSign">{{user_sign}}</span>
+                <span @click="addSign">{{user_sign ? user_sign : '未填写'}}</span>
             </li>
             
         </ul>
@@ -80,7 +80,7 @@ export default {
     },
     computed: {
         ...mapState({
-            user_name: state => state.userInfo.user_name,
+            user_name: state => state.userInfo.user_name ,
             user_sex: state => state.userInfo.user_sex,
             user_address: state => state.userInfo.user_address,
             user_birthday: state => state.userInfo.user_birthday,
@@ -103,7 +103,7 @@ export default {
         },
         addSign() {
             MessageBox.prompt('请输入您的个性签名').then(({ value, action }) => {
-                if(action === 'confirm') {
+                if(action === 'confirm') {                    
                     this.changeUserInfo({
                         type: 'user_sign',
                         value: value
@@ -138,16 +138,21 @@ export default {
             })
         },
         upDataInfo() {
-            updataUserInfo({
-                userName: this.user_name,
-                userSex: this.user_sex,
-                userAddress: this.user_address,
-                userBirthday: this.user_birthday,
-                userSign: this.user_sign,
-                userId: this.user_id
-            }).then(result => {
-                result && Toast(result)
-            })
+            // updataUserInfo({
+            //     userName: this.user_name,
+            //     userSex: this.user_sex,
+            //     userAddress: this.user_address,
+            //     userBirthday: this.user_birthday,
+            //     userSign: this.user_sign,
+            //     userId: this.user_id
+            // }).then(result => {
+            //     result && Toast(result)
+            // })
+
+            Toast('修改成功');
+            this.$router.back();
+
+
         }
     }
     

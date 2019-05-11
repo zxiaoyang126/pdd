@@ -43,6 +43,10 @@ export default {
         logoutHandler() {
             MessageBox.confirm('是否确定退出登陆').then(result => {
                 if(result === 'confirm') {
+
+                    this.addUserInfo({})
+                    this.$router.back();
+
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', 'http://127.0.0.1:3000/api/logout', true);                    
                     xhr.withCredentials = true;

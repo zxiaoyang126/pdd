@@ -48,12 +48,14 @@ export default {
     data() {
         return {
             isselectedAll: false,
-            totalPrice: 0            
+            totalPrice: 0,
+            //cartData: []            
         }
     },
     
     mounted() {
-        this.$store.dispatch('resCartDate');
+        //this.$store.dispatch('resCartData');    
+        
     },
     computed: {
         ...mapState({
@@ -61,10 +63,10 @@ export default {
         })
     },
     methods: {
-        ...mapMutations({          
-            storeSelectAll: 'selectAll',
-            storeSelectSingle: 'selectSingle'
-        }),
+        // ...mapMutations({          
+        //     storeSelectAll: 'selectAll',
+        //     storeSelectSingle: 'selectSingle'
+        // }),
 
         subCount(goods) {
             if(goods.goods_count == 1) {
@@ -117,8 +119,8 @@ export default {
         //移除购物车
         deleteGoods(goods) {
             var index = this.cartData.indexOf(goods);
-            console.log(index);
             this.cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify( this.cartData ))
             this.calcTotalPrice()
         }      
     }

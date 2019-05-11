@@ -64,6 +64,7 @@ export default {
             pwd: '',
             pwdMode: true, //true隐藏密码 false显示密码
             smsCaptcha: '',
+            smsCaptcha2: '',
             svgCaptcha: ''
         }
     },
@@ -89,6 +90,11 @@ export default {
                 if(this.time == 0) {
                     clearInterval(timer);                    
                 }
+
+                if(this.time == 55) {
+                    this.smsCaptcha2 = this.getRandom(6)
+                    console.log( this.smsCaptcha2 );
+                }
             }, 1000)
         },
         async getPhoneCode() {
@@ -103,6 +109,14 @@ export default {
                 //获取验证码成功，提示信息
                 Toast({message: '已成功发送'})
             }
+        },
+
+        getRandom(num) {
+            var n = '';
+            for(var i = 0; i < num; i++) {
+                n += Math.floor( Math.random()*10 )
+            };
+            return n;
         },
 
         login() {
@@ -124,7 +138,17 @@ export default {
                 Toast({message: '请输入验证码'})
                 return;
             }
-            this.ajax('http://127.0.0.1:3000/api/login')           
+
+            if(this.smsCaptcha === this.smsCaptcha2) {
+                this.addUserInfo({
+                    user_id: this.phoneNumber
+                })
+                this.$router.replace('/me')
+            }
+
+
+
+            //this.ajax('http://127.0.0.1:3000/api/login')
   
             // var reuslt = login({phone: this.phoneNumber, code: this.smsCaptcha});
             // reuslt.then(data => {

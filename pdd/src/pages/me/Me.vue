@@ -7,7 +7,7 @@
                 <router-link tag="div" to="/userInfo" class="user-pic"></router-link>
 
                 <div class="user-name">
-                    <span>182****3510</span>
+                    <span>{{$store.state.userInfo.user_id}}</span>
                 </div>
 
                 <div class="user-other">
